@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks: 
+      - demo-network
+    volumes:
+     - $PWD/storage/rabbitmq:/var/lib/rabbitmq
+    environment:
+     - RABBITMQ_ERLANG_COOKIE=This_is_my_secret_phrase
+     - RABBITMQ_DEFAULT_USER=admin
+     - RABBITMQ_DEFAULT_PASS=Admin123
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    image: parser-app:latest
+    expose: 
+      - 8080
+    ports:
+      - "8080:8080"
+    networks: 
+      - demo-network
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USER=admin
+      - RABBITMQ_PASSWORD=Admin123
+      - RABBITMQ_QUEUE_CONSUME=queue.consume
+      - RABBITMQ_QUEUE_PRODUCE=queue.produce
+
+networks:
+  demo-network:
+    driver: bridge
