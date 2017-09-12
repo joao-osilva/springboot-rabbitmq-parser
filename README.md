@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/joao-osilva/springboot-rabbitmq-parser.svg?branch=master)](https://travis-ci.org/joao-osilva/springboot-rabbitmq-parser)
+
 # Spring Boot RabbitMQ Parser
 > By: João Silva (vitor191291@gmail.com)
 
