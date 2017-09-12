@@ -35,7 +35,7 @@ public class AppConfiguration {
 
 		factory.setConnectionFactory(connectionFactory);
 		factory.setConcurrentConsumers(3);
-		factory.setMaxConcurrentConsumers(10);
+		factory.setMaxConcurrentConsumers(6);
 		factory.setMessageConverter(new Jackson2JsonMessageConverter());
 
 		return factory;
