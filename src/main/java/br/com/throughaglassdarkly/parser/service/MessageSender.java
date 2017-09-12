@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageSender {
-	
+
 	@Value("${queue.to}")
 	private String queue;
 

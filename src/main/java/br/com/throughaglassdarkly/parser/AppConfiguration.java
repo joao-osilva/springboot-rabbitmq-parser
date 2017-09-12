@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 @EnableRabbit
 public class AppConfiguration {
@@ -34,8 +35,6 @@ public class AppConfiguration {
 		SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
 
 		factory.setConnectionFactory(connectionFactory);
-		factory.setConcurrentConsumers(3);
-		factory.setMaxConcurrentConsumers(10);
 		factory.setMessageConverter(new Jackson2JsonMessageConverter());
 
 		return factory;
